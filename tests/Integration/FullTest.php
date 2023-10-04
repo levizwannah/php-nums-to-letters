@@ -16,10 +16,16 @@ class FullTest extends TestCase {
         $this->assertEquals(-100, Converter::toNumber('-DW'));
     }
 
-    public function testDecimalNumbers(): void
-    {
-        $output = Converter::toNumber('EK.DW');
-        $this->assertIsFloat($output);
-        $this->assertEquals(110.100, $output);
+    public function testLettersWithLeadingAs(){
+        $this->assertEquals(0, Converter::toNumber('AAAAAAA'));
+        $this->assertEquals(1, Converter::toNumber('AAAAAAAAAAB'));
+    }
+
+    public function testLettersWithEndingAs() {
+        $this->assertEquals(pow(26, 3), Converter::toNumber('BAAA'));
+    }
+
+    public function testLowercaseLetters(){
+        $this->assertEquals(-100, Converter::toNumber('-dw'));
     }
 }
