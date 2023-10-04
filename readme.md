@@ -1,5 +1,5 @@
-![All tests](https://github.com/levizwannah/php-nums-to-letters/actions/workflows/php.yml/badge.svg)  
-
+![Deployment tests](https://github.com/levizwannah/php-nums-to-letters/actions/workflows/php.yml/badge.svg)  
+![Development tests](https://github.com/levizwannah/php-nums-to-letters/actions/workflows/php.yml/badge.svg?branch=develop)  
 # PHP Numbers To Letter
 This Library converts numbers to Letters using A-Z.
 0 = A, 25 = Z, using that, we can convert any number to a letter format. Even decimals.
