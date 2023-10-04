@@ -1,0 +1,25 @@
+{
+    "name": "levizwannah/php-nums-to-letters",
+    "description": "Convert Numbers to Order Letters. For example 0 => A, 1 => B",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LeviZwannah\\PhpNumsToLetters\\": "src/",
+            "LeviZwannah\\PhpNumsToLetters\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "levizwannah",
+            "email": "levizwannah@gmail.com"
+        }
+    ],
+    "scripts": {
+        "tests": "./vendor/bin/phpunit -c ./phpunit.xml --bootstrap vendor/autoload.php"
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "^10.4@dev"
+    }
+}
