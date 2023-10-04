@@ -40,8 +40,9 @@ class Converter {
 
     public static function toLetters($number) {
 
-        if(!preg_match("/^[-\+]?[0-9]+$/", $number . '')) throw new InvalidNumberException($number);
+        if(static::isWord($number)) return $number;
 
+        if(!preg_match("/^[-\+]?[0-9]+$/", $number . '')) throw new InvalidNumberException($number);
         $sign = $number < 0 ? '-' : '';
         $number = abs($number);
         $output = static::__toLetters($number);
@@ -50,13 +51,42 @@ class Converter {
     }
 
     public static function toNumber($letters) {
+        
+        if(static::isNumber($letters)) return (int) $letters;
+        
         $letters = strtoupper($letters);
         if(!preg_match("/^[-\+]?[A-Z]+$/", $letters)) throw new InvalidNumberException($letters);
+        
 
         $sign = $letters[0] === '-' ? -1 : 1;
         $output = (int)static::__toNumber($letters);
 
         return $sign * $output;
+    }
+
+
+    /**
+     * Checks if two values (string or numbers) are equal in this system. 
+     * @param string|int $val1 letters or number
+     * @param string|int $val2 letters or number
+     * @note The type of the values will be checked, so don't worry about the types.
+     * @return bool
+     */
+    public static function isEqual($val1, $val2) {
+        if(static::isNumber($val1) && static::isNumber($val2)) return $val1 == $val2;
+        if(static::isWord($val1) && static::isWord($val2)) return strcasecmp($val1, $val2) === 0; 
+
+        return static::toNumber($val1) == static::toNumber($val2);
+    }
+
+    private static function isWord($val): bool 
+    {
+        return (bool) preg_match("/^[-\+]?[A-Z]+$/", $val);
+    }
+
+    private static function isNumber($val): bool
+    {
+        return (bool) preg_match("/^[-\+]?[0-9]+$/", $val . "");
     }
 }
 ?>

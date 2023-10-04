@@ -39,4 +39,14 @@ class ConverterTest extends TestCase {
     {
         $this->assertEquals(-1, Converter::toNumber("-B"));
     }
+
+    public function testIsEqual(): void
+    {
+        $this->assertFalse(Converter::isEqual(0, 'B'));
+        $this->assertTrue(Converter::isEqual(1, 'B'));
+        $this->assertTrue(Converter::isEqual(1, 1));
+        $this->assertTrue(Converter::isEqual('ABC', 'ABC'));
+        $this->assertFalse(Converter::isEqual('DW', '-DW'));
+        $this->assertTrue(Converter::isEqual('dw', 'DW'));
+    }
 }
