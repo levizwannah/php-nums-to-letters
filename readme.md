@@ -1,4 +1,4 @@
-![All tests](https://github.com/levizwannah/php-nums-to-letters/blob/main/actions/workflows/php.yml/badge.svg)  
+![All tests](https://github.com/levizwannah/php-nums-to-letters/actions/workflows/php.yml/badge.svg)  
 
 # PHP Numbers To Letter
 This Library converts numbers to Letters using A-Z.
