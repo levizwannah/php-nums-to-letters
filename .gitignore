@@ -1,3 +1,4 @@
 vendor
 testdox.html
 .phpunit.*
+local-output.php
