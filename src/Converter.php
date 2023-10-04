@@ -1,45 +1,62 @@
 <?php 
 namespace LeviZwannah\PhpNumsToLetters;
 
+use LeviZwannah\PhpNumsToLetters\Exceptions\InvalidNumberException;
+
 class Converter {
 
-    public static function toLetters($number) {
-        $number = $number . '';
-        $parts = preg_split("/\./", $number);
-        $isDecimal = false;
+    private static function __toNumber($letters) {
 
-        if(count($parts) === 2) $isDecimal = true;
+        $letters = preg_replace("/^A+/", "", $letters);
 
-        $parts[0] = (int) $parts[0];
+        $output = 0;
+        $length = strlen($letters);
 
-        $output = '';
+        for($i = $length - 1; $i >= 0; $i--) {
+            
+            if($letters[$i] === '-') continue;
 
-        if($parts[0] == 0) $output .= 'A';
-
-        while($parts[0] != 0) {
-            $letter = chr(65 + ($parts[0] % 26));
-            $output = $letter . $output;
-            $parts[0] = (int) ($parts[0] / 26);
+            $digit = ord($letters[$i]) - 65;
+            $output += pow(26, $length - $i - 1) * $digit;
         }
 
         return $output;
     }
 
-    public static function toNumber($letters) {
-        $parts = preg_split("/\./", $letters);
-        $isDecimal = false;
+    private static function __toLetters($number) {
 
-        if(count($parts) === 2) $isDecimal = true;
+        $output = '';
 
-        $output = 0;
-        $length = strlen($parts[0]);
+        if($number == 0) $output .= 'A';
 
-        for($i = $length - 1; $i >= 0; $i--) {
-            $digit = ord($parts[0][$i]) - 65;
-            $output += pow(26, $length - $i - 1) * $digit;
+        while($number != 0) {
+            $letter = chr(65 + ($number % 26));
+            $output = $letter . $output;
+            $number = (int) ($number / 26);
         }
 
-        return intval($output);
+        return $output;
+    }
+
+    public static function toLetters($number) {
+
+        if(!preg_match("/^[-\+]?[0-9]+$/", $number . '')) throw new InvalidNumberException($number);
+
+        $sign = $number < 0 ? '-' : '';
+        $number = abs($number);
+        $output = static::__toLetters($number);
+
+        return "$sign$output";
+    }
+
+    public static function toNumber($letters) {
+        $letters = strtoupper($letters);
+        if(!preg_match("/^[-\+]?[A-Z]+$/", $letters)) throw new InvalidNumberException($letters);
+
+        $sign = $letters[0] === '-' ? -1 : 1;
+        $output = (int)static::__toNumber($letters);
+
+        return $sign * $output;
     }
 }
 ?>
