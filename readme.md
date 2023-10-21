@@ -24,7 +24,7 @@ Converts letters to number format. The letters will be converted to uppercase fi
 ```php
 use LeviZwannah\PhpNumsToLetters\Converter;
 
-$number = Converter::toLetters('AABC');
+$number = Converter::toNumber('AABC');
 ```
 
 ### isEqual($val1, $val2)
