@@ -1,4 +1,4 @@
-![Deployment tests](https://github.com/levizwannah/php-nums-to-letters/actions/workflows/php.yml/badge.svg) ![Development tests](https://github.com/levizwannah/php-nums-to-letters/actions/workflows/develop-php.yml/badge.svg?branch=develop)  
+![Installs](https://img.shields.io/packagist/dt/levizwannah/php-nums-to-letters) ![Deployment tests](https://github.com/levizwannah/php-nums-to-letters/actions/workflows/php.yml/badge.svg) ![Development tests](https://github.com/levizwannah/php-nums-to-letters/actions/workflows/develop-php.yml/badge.svg?branch=develop)  
 # PHP Numbers To Letter
 This Library converts Integers to Letters using A-Z.
 0 = A, 25 = Z, using that, we can convert any integer to a letter format.
@@ -57,3 +57,4 @@ With only 7 Letters, you can represent -8,031,810,176 to 8,031,810,176 numbers.
 ## Use cases
 1. Beautiful Order Invoice Numbers from Order IDS or some random Number.
 2. Representing IDs
+
